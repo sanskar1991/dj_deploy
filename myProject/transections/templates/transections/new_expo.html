@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% block title %}Exposure{% endblock %}
+{% block style %}
+button {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 8px 30px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 15px;
+  margin: 4px 2px;
+  cursor: pointer;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+}
+
+button1 {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+{% endblock %}
+
+
+{% block body %} 
+<h1>Exposure List</h1>
+<table>
+  <tr>
+    <th>Subnet Names</th>
+    <th>Subnet Values</th>
+  </tr>
+{% if new_expo %}
+    {% for sub in new_expo %}
+        <tr>
+            <td>{{ sub.new_sub_name }}</td>
+            {% if sub.new_sub_name == data %}
+              {% if is_present %}
+                <td>
+                  {{ sub.new_sub_value }}
+                </td>
+              {% else %}
+                <form action="" method="post">
+                  {% csrf_token %}
+                  <td>
+                    <input type='text' name="integer_value"></input>
+                    {% comment %} <button type="submit" name="button1" value={{ sub.new_sub_name }}>Submit</button> {% endcomment %}
+                  </td>
+                </form>
+              {% endif %}
+            {% else %}
+              <form action="" method="post">
+                {% csrf_token %}
+                <td>
+                <button type="submit" name="button1" value={{ sub.new_sub_name }}>Check</button>
+                </td>
+              </form>
+            {% endif %}
+        </tr>
+    {% endfor %}
+{% endif %}
+</table>
+<button type="button">Add Subnet</button>
+
+<button 
+type="submit" 
+value="Hello"
+onclick="location.href={% url 'addition' %}" 
+name='mybtn2'>Download Excel file</button>
+{% endblock %}

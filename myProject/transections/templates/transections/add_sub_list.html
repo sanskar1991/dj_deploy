@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block title %}Additional Subnets{% endblock %}
+{% block body %} 
+<h1>Additional Subnets List</h1>
+<table>
+  <tr>
+    <th>Subnet Names</th>
+    <th>Subnet Values</th>
+  </tr>
+{% if add_sub_list %}
+    {% for sub in add_sub_list %}
+        <tr>
+            <td>{{ sub.acc_subnet_name }}</td>
+            <td>{{ sub.acc_subnet_value }}</td>
+        </tr>
+    {% endfor %}
+{% endif %}
+</table>
+{% endblock %}

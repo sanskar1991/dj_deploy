@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block title %}Network List{% endblock %}
+{% block body %} 
+<h1>Network List</h1>
+<table>
+  <tr>
+    <th>Subnet Names</th>
+    <th>Subnet Values</th>
+  </tr>
+{% if network_list %}
+    {% for sub in network_list %}
+        <tr>
+            <td>{{ sub.subnet_name }}</td>
+            <td>{{ sub.subnet_value }}</td>
+        </tr>
+    {% endfor %}
+{% endif %}
+</table>
+{% endblock %}
